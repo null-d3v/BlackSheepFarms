@@ -1,0 +1,87 @@
+﻿@model ContactModel
+
+@{
+    ViewData["Robots"] = "all";
+    ViewData["Title"] = "Black Sheep Farms";
+}
+
+<div class="split">
+    <div class="content">
+        <h2>Lorem Ipsum</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc feugiat turpis diam, sit amet pulvinar arcu dignissim id. Morbi feugiat neque non ex tempus blandit. Vivamus rhoncus vel purus ut sagittis. Curabitur non accumsan leo, id luctus erat. Morbi at libero faucibus, laoreet velit et, laoreet libero. Quisque mi eros, ornare ac odio vel, faucibus tempus elit.</p>
+
+        <ul>
+            <li>Nunc congue</li>
+            <li>Augue quis porta convallis</li>
+            <li>Purus purus rhoncus enim</li>
+        </ul>
+    </div>
+    <div class="spacer"></div>
+    <div class="content">
+        <h2>Contact Us</h2>
+        @if (Model.IsComplete)
+        {
+            <p>Thank you for contacting us!</p>
+            <p>We will be in touch to assist you.</p>
+        }
+        else
+        {
+            <form action="https://formsubmit.co/BlackSheepFarms@outlook.com" method="post">
+                <input type="hidden" name="_captcha" value="true">
+                <input type="hidden" name="_next" value="https://domain?isComplete=true">
+
+                <input asp-for="Name" placeholder="Name" required>
+
+                <input asp-for="EmailAddress" placeholder="Email" required>
+
+                <input asp-for="Phone" placeholder="Phone" required>
+
+                <textarea asp-for="ServiceDescription" placeholder="What can we do for you?" required>
+                </textarea>
+
+                <input type="submit" value="Submit">
+            </form>
+        }
+    </div>
+</div>
+
+<img class="split split-image" src="/img/background.jpg">
+
+<div class="split">
+    <img class="section-image" src="/img/section1.jpg">
+    <div class="content">
+        <h2>Praesent Sem Augue</h2>
+        <p>Praesent sem augue, lobortis sed est a, vestibulum egestas metus. Morbi mattis, ligula at efficitur elementum, ipsum ligula rhoncus nisl, nec iaculis lacus augue eu velit. Proin iaculis blandit mi. Donec ac sollicitudin arcu. Quisque a nulla nec mi suscipit laoreet accumsan a risus. Sed volutpat, libero sit amet interdum finibus, risus metus fermentum lorem, luctus suscipit elit purus in augue. Duis egestas nunc quam, nec scelerisque magna ultrices ut. Ut ac urna gravida massa viverra vehicula. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus et eros tincidunt, scelerisque elit nec, commodo ipsum. Nulla eget vehicula nisi. Nam mollis neque ac odio volutpat efficitur. Maecenas vel blandit tellus. In mollis mattis ligula, gravida sodales arcu. Morbi blandit ultricies lectus a aliquet.</p>
+    </div>
+</div>
+
+<div class="reverse split">
+    <img class="section-image" src="/img/section2.png">
+    <div class="content">
+        <h2>Ut Ac Pulvinar</h2>
+        <p>Ut ac pulvinar diam. Integer vitae convallis dolor. Nam consectetur felis aliquam arcu ullamcorper aliquet. Donec sed lectus et diam tincidunt maximus in ac augue. Nulla et scelerisque sem, eget volutpat nisi. Donec nec hendrerit tortor. Nullam accumsan enim vitae tellus tempor, vel aliquam ex dictum. Pellentesque quis laoreet ex, sed vehicula enim. Sed et urna nisi. Praesent vehicula lectus nulla, ultricies iaculis nunc mollis non. Fusce eget interdum elit. In tempus interdum eros in convallis. Proin consequat orci sit amet faucibus vehicula.</p>
+    </div>
+</div>
+
+<div class="split">
+    <img class="section-image" src="/img/section3.png">
+    <div class="content">
+        <h2>Integer Est Arcu</h2>
+        <ul>
+            <li>Vestibulum eget sagittis id</li>
+            <li>Accumsan id metus</li>
+            <li>Nunc porttitor vitae sem vitae ornare</li>
+            <li>Vestibulum tempus eu lectus eget lacinia</li>
+            <li>Pellentesque habitant morbi</li>
+            <li>Tristique senectus et netus et malesuada</li>
+            <li>Fames ac turpis egestas</li>
+            <li>In ultricies eu massa eget ultricies</li>
+            <li>In consequat placerat risus</li>
+            <li>Aliquam mattis sapien velit</li>
+            <li>Non finibus neque accumsan eu</li>
+            <li>In ut molestie turpis</li>
+            <li>Fusce et blandit nisl</li>
+            <li>Praesent ut leo vitae augue ultricies luctus</li>
+        </ul>
+    </div>
+</div>

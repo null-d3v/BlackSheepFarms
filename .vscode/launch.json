@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations":
+    [
+        {
+            "name": "BlackSheepFarms",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/BlackSheepFarms/bin/Debug/net9.0/BlackSheepFarms.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/BlackSheepFarms",
+            "stopAtEntry": false,
+            "serverReadyAction":
+            {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)\","
+            },
+            "env":
+            {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "https://localhost:5001"
+            },
+            "sourceFileMap":
+            {
+                "/Views": "${workspaceFolder}/src/BlackSheepFarms/Views"
+            }
+        }
+    ]
+}

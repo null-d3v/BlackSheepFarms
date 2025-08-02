@@ -1,0 +1,29 @@
+{
+    "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
+    "customizations":
+    {
+        "vscode":
+        {
+            "extensions":
+            [
+                "ms-dotnettools.csdevkit",
+                "ue.alphabetical-sorter"
+            ]
+        }
+    },
+    "forwardPorts":
+    [
+        5000,
+        5001
+    ],
+    "name": "BlackSheepFarms",
+    "portsAttributes":
+    {
+        "5001":
+        {
+            "protocol": "https"
+        }
+    },
+    "postCreateCommand": "dotnet dev-certs https",
+    "remoteUser": "root"
+}

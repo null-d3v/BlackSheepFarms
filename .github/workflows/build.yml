@@ -1,0 +1,15 @@
+name: Build
+
+on: push
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v4
+          - name: Setup
+            uses: actions/setup-dotnet@v4
+            with:
+                dotnet-version: 9
+          - name: Build
+            run: dotnet build -c Release
