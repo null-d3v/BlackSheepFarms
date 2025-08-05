@@ -17,18 +17,18 @@ webApplicationBuilder.Services
 
 webApplicationBuilder.Services
     .AddResponseCompression();
-// webApplicationBuilder.Services
-//     .AddWebOptimizer(
-//         options =>
-//         {
-//             options.EnableDiskCache = false;
-//         },
-//         !webApplicationBuilder.Environment.IsDevelopment(),
-//         !webApplicationBuilder.Environment.IsDevelopment());
-// webApplicationBuilder.Services
-//     .AddWebMarkupMin()
-//     .AddHtmlMinification()
-//     .AddHttpCompression();
+webApplicationBuilder.Services
+    .AddWebOptimizer(
+        options =>
+        {
+            options.EnableDiskCache = false;
+        },
+        !webApplicationBuilder.Environment.IsDevelopment(),
+        !webApplicationBuilder.Environment.IsDevelopment());
+webApplicationBuilder.Services
+    .AddWebMarkupMin()
+    .AddHtmlMinification()
+    .AddHttpCompression();
 
 webApplicationBuilder.Services.AddRouting(
     routeOptions => routeOptions.LowercaseUrls = true);
@@ -56,8 +56,8 @@ else
 
 webApplication
     .UseResponseCompression()
-    // .UseWebOptimizer()
-    // .UseWebMarkupMin()
+    .UseWebOptimizer()
+    .UseWebMarkupMin()
     .UseStaticFiles()
     .UseRouting();
 
