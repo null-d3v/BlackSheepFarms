@@ -323,11 +323,3 @@ textarea
 {
     margin: 0 1em;
 }
-
-.content-test
-{
-    background-attachment: fixed;
-    background-image: url(/img/background.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-}
