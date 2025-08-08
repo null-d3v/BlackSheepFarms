@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.HttpOverrides;
+﻿using BlackSheepFarms;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.HttpOverrides;
 using WebMarkupMin.AspNetCoreLatest;
 
 var webApplicationBuilder = WebApplication.CreateBuilder(args);
@@ -44,6 +46,9 @@ webApplicationBuilder.Services
 webApplicationBuilder.Services.AddRouting(
     routeOptions => routeOptions.LowercaseUrls = true);
 
+webApplicationBuilder.Services
+    .AddHealthChecks();
+
 var mvcBuilder = webApplicationBuilder.Services
     .AddControllersWithViews();
 if (webApplicationBuilder.Environment.IsDevelopment())
@@ -75,6 +80,22 @@ webApplication
 webApplication
     .UseForwardedHeaders();
 
+webApplication
+    .MapHealthChecks(
+        "/health/live",
+        new HealthCheckOptions
+        {
+            Predicate = (healthCheckRegistration) => false,
+        });
+webApplication
+    .MapHealthChecks(
+    "/health/ready",
+        new HealthCheckOptions
+        {
+            Predicate = (healthCheckRegistration) =>
+                healthCheckRegistration.Tags.Contains(
+                    Constants.ReadinessHealthCheckTag),
+        });
 webApplication.MapControllers();
 
 await webApplication
