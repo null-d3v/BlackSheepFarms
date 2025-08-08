@@ -1,4 +1,5 @@
-﻿using WebMarkupMin.AspNetCoreLatest;
+﻿using Microsoft.AspNetCore.HttpOverrides;
+using WebMarkupMin.AspNetCoreLatest;
 
 var webApplicationBuilder = WebApplication.CreateBuilder(args);
 webApplicationBuilder.Configuration
@@ -15,6 +16,16 @@ webApplicationBuilder.Services
 webApplicationBuilder.Services
     .AddOptions();
 
+webApplicationBuilder.Services
+    .Configure<ForwardedHeadersOptions>(
+        options =>
+        {
+            options.ForwardedHeaders =
+                ForwardedHeaders.XForwardedFor |
+                ForwardedHeaders.XForwardedProto;
+            options.KnownNetworks.Clear();
+            options.KnownProxies.Clear();
+        });
 webApplicationBuilder.Services
     .AddResponseCompression();
 webApplicationBuilder.Services
@@ -60,6 +71,9 @@ webApplication
     .UseWebMarkupMin()
     .UseStaticFiles()
     .UseRouting();
+
+webApplication
+    .UseForwardedHeaders();
 
 webApplication.MapControllers();
 
