@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: web
+    labels:
+        {{- include "blacksheepfarms.web.labels" . | nindent 8 }}
+spec:
+    selector:
+        {{- include "blacksheepfarms.web.selectorLabels" . | nindent 8 }}
+    ports:
+      - name: http
+        port: 80
+        protocol: TCP
+        targetPort: http

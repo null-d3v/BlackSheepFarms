@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    labels:
+        {{- include "blacksheepfarms.web.labels" . | nindent 8 }}
+    name: web
+spec:
+    replicas: {{ .Values.web.replicas }}
+    selector:
+        matchLabels:
+            {{- include "blacksheepfarms.web.selectorLabels" . | nindent 12 }}
+    template:
+        metadata:
+            labels:
+                {{- include "blacksheepfarms.web.selectorLabels" . | nindent 16 }}
+        spec:
+            securityContext:
+                fsGroup: 1654
+                runAsGroup: 1654
+                runAsUser: 1654
+            containers:
+              - image: {{ .Values.web.image | quote }}
+                name: web
+                ports:
+                  - name: http
+                    containerPort: 8080
+                    protocol: TCP
+                env:
+                  {{- range .Values.web.env }}
+                  - name: {{ .name | quote }}
+                    value: {{ .value | quote }}
+                  {{- end }}
+                {{- if or .Values.web.persistence.enabled .Values.web.additionalVolumeMounts }}
+                volumeMounts:
+                  {{- if .Values.web.persistence.enabled }}
+                  - name: web
+                    mountPath: {{ .Values.web.persistence.mountPath | quote }}
+                    readOnly: true
+                  {{- end }}
+                  {{- with .Values.web.additionalVolumeMounts }}
+                  {{- toYaml . | nindent 18 }}
+                  {{- end }}
+                {{- end }}
+                resources: {{- toYaml .Values.web.resources | nindent 20 }}
+                livenessProbe:
+                    httpGet:
+                        path: /health/live
+                        port: http
+                    periodSeconds: 15
+                    timeoutSeconds: 5
+                readinessProbe:
+                    httpGet:
+                        path: /health/ready
+                        port: http
+                    periodSeconds: 60
+                    timeoutSeconds: 15
+                startupProbe:
+                    httpGet:
+                        path: /health/ready
+                        port: http
+                    failureThreshold: 10
+                    periodSeconds: 5
+            restartPolicy: Always
+            {{- if or .Values.web.persistence.enabled .Values.web.additionalVolumes }}
+            volumes:
+              {{- if .Values.web.persistence.enabled }}
+              - name: web
+                persistentVolumeClaim:
+                    claimName: web
+              {{- end }}
+              {{- with .Values.web.additionalVolumes }}
+              {{- toYaml . | nindent 14 }}
+              {{- end }}
+            {{- end }}

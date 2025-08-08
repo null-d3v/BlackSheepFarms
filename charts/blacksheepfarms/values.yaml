@@ -1,0 +1,20 @@
+web:
+    additionalVolumeMounts: []
+    additionalVolumes: []
+    env:
+      - name: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - name: Logging__LogLevel__Default
+        value: Warning
+    host: example.com
+    image: nulld3v/blacksheepfarms
+    ingress:
+        annotations: {}
+    replicas: 1
+    resources:
+        limits:
+            cpu: 2
+            memory: 2Gi
+        requests:
+            cpu: 10m
+            memory: 64Mi

@@ -1,0 +1,16 @@
+{{- if .Values.web.persistence.enabled -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    labels:
+        {{- include "blacksheepfarms.web.labels" . | nindent 8 }}
+    name: web
+spec:
+    accessModes:
+      - ReadWriteMany
+    resources:
+        requests:
+            storage: {{ .Values.web.persistence.storage }}
+    storageClassName: {{ .Values.web.persistence.storageClassName }}
+---
+{{- end }}
