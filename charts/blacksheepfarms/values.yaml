@@ -10,6 +10,7 @@ web:
     image: nulld3v/blacksheepfarms
     ingress:
         annotations: {}
+        className:
     replicas: 1
     resources:
         limits:
