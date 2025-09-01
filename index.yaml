@@ -2,6 +2,15 @@ apiVersion: v1
 entries:
   blacksheepfarms:
   - apiVersion: v2
+    created: "2025-09-01T01:28:51.6159501Z"
+    description: https://github.com/null-d3v/BlackSheepFarms
+    digest: ae9b2b400533721f23465b9df769b3fb588f844af4b7618f6f09020d27b07e64
+    name: blacksheepfarms
+    type: application
+    urls:
+    - https://github.com/null-d3v/BlackSheepFarms/releases/download/blacksheepfarms-1.0.3/blacksheepfarms-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v2
     created: "2025-08-08T02:33:32.019548455Z"
     description: https://github.com/null-d3v/BlackSheepFarms
     digest: 1a6e51eea3692f222d502bc3f9283f8e5392f460537409c22e66c1916c140243
@@ -10,4 +19,4 @@ entries:
     urls:
     - https://github.com/null-d3v/BlackSheepFarms/releases/download/blacksheepfarms-1.0.2/blacksheepfarms-1.0.2.tgz
     version: 1.0.2
-generated: "2025-08-08T02:33:32.019577359Z"
+generated: "2025-09-01T01:28:51.615963835Z"
